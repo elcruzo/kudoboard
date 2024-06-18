@@ -1,0 +1,15 @@
+.create-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.create-container button {
+    padding: 10px 20px;
+}
+
+.buttons-container-2 {
+    margin-top: 20px;
+}

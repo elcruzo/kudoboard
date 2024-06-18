@@ -1,0 +1,19 @@
+.logo-container {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding-top: 2vh;
+}
+
+.logo-container img {
+    width: 100%;
+}
+
+.title h1 {
+    text-align: center;
+    margin: 0 0 20px 0;
+    letter-spacing: 0.2rem;
+}

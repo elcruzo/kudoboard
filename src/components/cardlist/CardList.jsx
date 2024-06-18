@@ -1,12 +1,15 @@
+import React from 'react';
 import Card from '../card/Card';
 import './cardlist.css';
 
-function CardList () {
-    return (
-        <div>
-            <Card />
-        </div>
-    )
+function CardList({ boards }) {
+  return (
+    <div>
+      {boards.map(board => (
+        <Card key={board.id} board={board} />
+      ))}
+    </div>
+  );
 }
 
-export default CardList
+export default CardList;

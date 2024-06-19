@@ -12,6 +12,7 @@ function Modal({ show, handleClose, handleSubmit }) {
       category: formData.get('category'),
       author: formData.get('author')
     };
+    console.log('Form Data:', data)
     handleSubmit(data);
   };
 
@@ -27,11 +28,11 @@ function Modal({ show, handleClose, handleSubmit }) {
           <div>
             <label htmlFor="category">Category:</label>
             <select id="category" name="category" required>
-              <option value="All">All</option>
-              <option value="Recent">Recent</option>
-              <option value="Celebration">Celebration</option>
-              <option value="Thank You">Thank You</option>
-              <option value="Inspiration">Inspiration</option>
+                <option value="All"></option>
+                <option value="Recent">Recent</option>
+                <option value="Celebration">Celebration</option>
+                <option value="Thank You">Thank You</option>
+                <option value="Inspiration">Inspiration</option>
             </select>
           </div>
           <div>

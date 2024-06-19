@@ -1,14 +1,14 @@
 import './buttons.css'
 
-function Buttons() {
+function Buttons({ handleFilter }) {
 
   return (
     <div className='buttons-container-1'>
-      <a href=""><button>All</button></a>
-      <a href=""><button>Recent</button></a>
-      <a href=""><button>Celebration</button></a>
-      <a href=""><button>Thank You</button></a>
-      <a href=""><button>Inspiration</button></a>
+      <button onClick={() => handleFilter('All')}>All</button>
+      <button onClick={() => handleFilter('Recent')}>Recent</button>
+      <button onClick={() => handleFilter('Celebration')}>Celebration</button>
+      <button onClick={() => handleFilter('Thank You')}>Thank You</button>
+      <button onClick={() => handleFilter('Inspiration')}>Inspiration</button>
     </div>
   )
 }

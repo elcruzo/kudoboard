@@ -1,25 +1,40 @@
 import './boardslist.css';
 import Board from '../board/Board';
+import { useEffect, useState } from 'react';
 
-function BoardList({boards}) {
+function BoardsList() {
+  const [boards, setBoards] = useState([]);
 
-  const boardLst = boards.map((board) => {
-    return (
-      <Board
-        key={board.id}
-        title={board.title}
-        category={board.category}
-      />
-    );
-  });
+  useEffect(() => {
+    async function fetchBoards() {
+      try {
+        const backendUrlAccess = import.meta.env.VITE_BACKEND_ADDRESS;
+        const response = await fetch(`${backendUrlAccess}/api/boards`);
+        if (!response.ok) {
+          throw new Error('Boards not found');
+        }
+        const data = await response.json();
+        setBoards(data);
+      } catch (error) {
+        console.error('Error fetching boards:', error);
+      }
+    }
+
+    fetchBoards();
+  }, [])
 
   return (
-    <div className='board-container'>
-        <div className="board-list">
-            {boardLst}
-        </div>
+    <div className='boards-container'>
+          {boards.map(board => (
+            <Board
+              key={board.id}
+              title={board.title}
+              category={board.category}
+            />
+        )
+      )}
     </div>
     )
   }
 
-export default BoardList;
+export default BoardsList;

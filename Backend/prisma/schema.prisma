@@ -18,4 +18,16 @@ model Board {
   title String
   category String
   author String?
+  createdAt DateTime @default(now())
+  cards Card[]
+}
+
+model Card {
+  id          Int      @id @default(autoincrement())
+  message     String
+  gifUrl      String
+  isSigned    Boolean  @default(false)
+  upvotes     Int      @default(0)
+  boardId     Int
+  board       Board    @relation(fields: [boardId], references: [id])
 }

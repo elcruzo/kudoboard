@@ -1,22 +1,30 @@
-// import React from 'react';
-// import './card.css';
+import React from 'react';
+import './card.css'; // Style your card component here
 
-// function Card({ board }) {
-//   return (
-//     <div className='card-container'>
-//       <div className='img-container'>
-//         <img src={`https://picsum.photos/200?random=${board.id}`} alt={board.title} />
-//       </div>
-//       <div>
-//         <h2>{board.title}</h2>
-//         <p>{board.author}</p>
-//         <div className='card-button-cont'>
-//           <button>View Board</button>
-//           <button>Delete Board</button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
+function Card({ card }) {
+  const handleSignCard = () => {
+    // Implement signing the card logic
+  };
 
-// export default Card;
+  const handleUpvote = () => {
+    // Implement upvoting the card logic
+  };
+
+  const handleDelete = () => {
+    // Implement deleting the card logic
+  };
+
+  return (
+    <div className='card-container'>
+      <img src={card.gifUrl} alt='GIF' />
+      <p>{card.message}</p>
+      <div className='card-actions'>
+        <button onClick={handleSignCard}>Sign</button>
+        <button onClick={handleUpvote}>Upvote</button>
+        <button onClick={handleDelete}>Delete</button>
+      </div>
+    </div>
+  );
+}
+
+export default Card;

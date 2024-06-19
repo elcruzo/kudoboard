@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Header from './components/header/Header';
 import SearchForm from './components/searchform/SearchForm';
 import Buttons from './components/buttons/Buttons';
 import Create from './components/create/Create';
-import CardList from './components/cardlist/CardList';
+import BoardsList from './components/boardslist/BoardsList';
 import Modal from './components/modal/Modal';
 
 function App() {
@@ -31,6 +31,26 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    getBoards();
+  }, []);
+
+  async function getBoards() {
+    try{
+      const backendUrlAccess = import.meta.env.VITE_BACKEND_ADDRESS;
+      const response = await fetch(`${backendUrlAccess}/boards`);
+      if (!response.ok) {
+        throw new Error('Something went wrong!');
+      }
+      const data = await response.json();
+      console.log(data);
+      setBoards(data);
+    }
+    catch(error) {
+      console.error(error);
+    }
+  }
+
   return (
     <div>
       <Header />
@@ -39,7 +59,7 @@ function App() {
         <Buttons />
         <Create onOpenModal={handleOpenModal} />
       </div>
-      <CardList boards={boards} />
+      <BoardsList boards={boards} />
       <Modal show={showModal} handleClose={handleCloseModal} handleSubmit={handleCreateBoard} />
     </div>
   );

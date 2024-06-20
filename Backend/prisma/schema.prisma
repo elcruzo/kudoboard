@@ -26,6 +26,7 @@ model Card {
   id          Int      @id @default(autoincrement())
   message     String
   gifUrl      String
+  textMessage  String?
   isSigned    Boolean  @default(false)
   upvotes     Int      @default(0)
   boardId     Int

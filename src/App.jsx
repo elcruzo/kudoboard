@@ -61,7 +61,7 @@ function App() {
     } catch (error) {
         console.error('Error in deleting board:', error);
     }
-};
+  };
 
   const handleFilter = (category) => {
     setSelectedCategory(category);

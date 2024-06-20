@@ -11,6 +11,7 @@ function BoardPage() {
     const [showModal, setShowModal] = useState(false);
     const [newCardMessage, setNewCardMessage] = useState('');
     const [newCardGifUrl, setNewCardGifUrl] = useState('');
+    const [textMessage, setTextMessage] = useState('');
 
     useEffect(() => {
         async function fetchBoardDetails() {
@@ -51,7 +52,7 @@ function BoardPage() {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ message: newCardMessage, gifUrl: newCardGifUrl })
+                body: JSON.stringify({ message: newCardMessage, gifUrl: newCardGifUrl, textMessage: textMessage })
             });
 
             if (!response.ok) {
@@ -62,6 +63,7 @@ function BoardPage() {
             setCards([...cards, newCard]);
             setNewCardMessage('');
             setNewCardGifUrl('');
+            setTextMessage('');
             setShowModal(false); // Close the modal after adding the card
         } catch (error) {
             console.error('Error adding card:', error);
@@ -94,6 +96,12 @@ function BoardPage() {
                         onChange={(e) => setNewCardGifUrl(e.target.value)}
                         placeholder='Enter GIF URL'
                         required
+                    />
+                    <input
+                        type="text"
+                        placeholder="Optional Text Message"
+                        value={textMessage}
+                        onChange={(e) => setTextMessage(e.target.value)}
                     />
                     <button type='submit'>Add Card</button>
                 </form>

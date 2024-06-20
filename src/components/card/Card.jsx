@@ -59,6 +59,7 @@ function Card({ card, onCardUpdate, onCardDelete }) {
         <div className='card-container'>
             <img src={card.gifUrl} alt='GIF' />
             <p>{card.message}</p>
+            {card.textMessage && <p>{card.textMessage}</p>}
             <div className='card-actions'>
                 <button onClick={handleSignCard}>Sign</button>
                 <button onClick={handleUpvote}>Upvote</button>

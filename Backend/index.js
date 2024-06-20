@@ -155,13 +155,20 @@ app.put('/cards/:cardId/upvote', async (req, res) => {
 app.delete('/boards/:boardId', async (req, res) => {
     const { boardId } = req.params;
     try {
+        // Delete all cards associated with the board
+        await prisma.card.deleteMany({
+            where: { boardId: parseInt(boardId) }
+        });
+
+        // Delete the board itself
         const deletedBoard = await prisma.board.delete({
             where: { id: parseInt(boardId) }
         });
+
         res.status(200).json(deletedBoard);
     } catch (error) {
         console.error('Error deleting board:', error);
-        res.status(500).json({ error: 'Error deleting board' });
+        res.status(500).json({ error: 'Failed to delete' });
     }
 });
 

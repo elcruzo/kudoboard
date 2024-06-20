@@ -45,6 +45,24 @@ function App() {
     }
   };
 
+  const handleDeleteBoard = async (id) => {
+    try {
+        const backendUrlAccess = import.meta.env.VITE_BACKEND_ADDRESS;
+        const response = await fetch(`${backendUrlAccess}/boards/${id}`, {
+            method: 'DELETE'
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to delete board');
+        }
+
+        setBoards(prevBoards => prevBoards.filter(board => board.id !== id));
+        console.log('Board deleted successfully');
+    } catch (error) {
+        console.error('Error in deleting board:', error);
+    }
+};
+
   const handleFilter = (category) => {
     setSelectedCategory(category);
   };
@@ -101,7 +119,7 @@ function App() {
                             <Buttons handleFilter={handleFilter} />
                             <Create onOpenModal={handleOpenModal} />
                         </div>
-                        <BoardsList boards={filteredBoards} />
+                        <BoardsList boards={filteredBoards} handleDeleteBoard={handleDeleteBoard} />
                         <Modal show={showModal} handleClose={handleCloseModal} handleSubmit={handleCreateBoard} />
                     </div>
                 } />

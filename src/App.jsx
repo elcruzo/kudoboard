@@ -124,6 +124,7 @@ function App() {
                     </div>
                 } />
                 <Route path="/board/:boardId" element={<BoardPage />} />
+                <Route path="/login" element={<Login />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </div>

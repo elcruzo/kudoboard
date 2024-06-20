@@ -155,10 +155,10 @@ app.put('/cards/:cardId/sign', async (req, res) => {
         const updatedCard = await prisma.card.update({
             where: { id: parseInt(cardId) },
             data: {
-                isSigned: !card.isSigned, // Toggle isSigned field
+                isSigned: !card.isSigned,
             },
             include: {
-                comments: true, // Include comments in the response
+                comments: true,
             },
         });
 

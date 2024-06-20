@@ -67,6 +67,22 @@ app.get('/boards/:boardId/cards', async (req, res) => {
     }
 });
 
+app.get('/cards/:cardId', async (req, res) => {
+    const { cardId } = req.params;
+    try {
+        const card = await prisma.card.findUnique({
+            where: { id: parseInt(cardId) },
+            include: {
+                comments: true,
+            },
+        });
+        res.status(200).json(card);
+    } catch (error) {
+        console.error(`Error fetching card ${cardId}:`, error);
+        res.status(500).json({ error: `Error fetching card ${cardId}` });
+    }
+});
+
 // POST ENDPOINTS
 
 app.post('/boards', async (req, res) => {
@@ -125,14 +141,31 @@ app.put('/boards/:boardId', async (req, res) => {
 app.put('/cards/:cardId/sign', async (req, res) => {
     const { cardId } = req.params;
     try {
+        const card = await prisma.card.findUnique({
+            where: { id: parseInt(cardId) },
+            include: {
+                comments: true,
+            }
+        });
+
+        if (!card) {
+            return res.status(404).json({ error: `Card ${cardId} not found` });
+        }
+
         const updatedCard = await prisma.card.update({
             where: { id: parseInt(cardId) },
-            data: { isSigned: true },
+            data: {
+                isSigned: !card.isSigned, // Toggle isSigned field
+            },
+            include: {
+                comments: true, // Include comments in the response
+            },
         });
+
         res.status(200).json(updatedCard);
     } catch (error) {
-        console.error(`Error signing card ${cardId}:`, error);
-        res.status(500).json({ error: `Error signing card ${cardId}` });
+        console.error(`Error toggling sign status for card ${cardId}:`, error);
+        res.status(500).json({ error: `Error toggling sign status for card ${cardId}` });
     }
 });
 
@@ -145,6 +178,9 @@ app.put('/cards/:cardId/upvote', async (req, res) => {
                 upvotes: {
                     increment: 1,
                 },
+            },
+            include: {
+                comments: true,
             },
         });
         res.status(200).json(updatedCard);

@@ -4,11 +4,14 @@ import './card.css';
 function Card({ card, onCardUpdate, onCardDelete }) {
     const [newComment, setNewComment] = useState('');
 
-    const handleSignCard = async () => {
+    const handleToggleSign = async () => {
         try {
             const backendUrlAccess = import.meta.env.VITE_BACKEND_ADDRESS;
             const response = await fetch(`${backendUrlAccess}/cards/${card.id}/sign`, {
-                method: 'PUT'
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
             });
 
             if (!response.ok) {
@@ -17,7 +20,6 @@ function Card({ card, onCardUpdate, onCardDelete }) {
 
             const updatedCard = await response.json();
             onCardUpdate(updatedCard);
-            setNewComment('');
         } catch (error) {
             console.error('Error signing card:', error);
         }
@@ -107,7 +109,7 @@ function Card({ card, onCardUpdate, onCardDelete }) {
                 </form>
             </div>
             <div className='card-actions'>
-                <button onClick={handleSignCard}>{card.isSigned ? 'Unsign' : 'Sign'}</button>
+                <button onClick={handleToggleSign}>{card.isSigned ? 'Unsign' : 'Sign'}</button>
                 <button onClick={handleUpvote}>Upvote</button>
                 <button onClick={handleDelete}>Delete</button>
             </div>

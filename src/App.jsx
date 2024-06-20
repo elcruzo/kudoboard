@@ -39,6 +39,8 @@ function App() {
       const newBoard = await response.json();
       setBoards([...boards, newBoard]);
       handleCloseModal();
+
+      getBoards();
     } catch (error) {
       console.error('Error creating board:', error);
     }
@@ -94,23 +96,24 @@ function App() {
 
   return (
     <Router>
-      <div>
-        <Header />
-        <Routes>
-          <Route path="/" element={
-            <div>
-              <SearchForm handleSearch={handleSearch} suggestions={suggestions} />
-              <div className='buttons-container'>
-                <Buttons handleFilter={handleFilter}/>
-                <Create onOpenModal={handleOpenModal} />
-              </div>
-              <BoardsList boards={filteredBoards} />
-              <Modal show={showModal} handleClose={handleCloseModal} handleSubmit={handleCreateBoard} />
-            </div>
-          } />
-          <Route path="/board/:boardId" element={<BoardPage />} />
-        </Routes>
-      </div>
+        <div>
+            <Header />
+            <Routes>
+                <Route path="/" element={
+                    <div>
+                        <SearchForm handleSearch={handleSearch} suggestions={suggestions} />
+                        <div className='buttons-container'>
+                            <Buttons handleFilter={handleFilter} />
+                            <Create onOpenModal={handleOpenModal} />
+                        </div>
+                        <BoardsList boards={filteredBoards} />
+                        <Modal show={showModal} handleClose={handleCloseModal} handleSubmit={handleCreateBoard} />
+                    </div>
+                } />
+                <Route path="/board/:boardId" element={<BoardPage />} />
+                <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+        </div>
     </Router>
   );
 }

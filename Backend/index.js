@@ -74,19 +74,39 @@ app.get('/api/boards/:boardId/cards', async (req, res) => {
     }
   });
 
-app.post('/api/boards', async (req, res) => {
-  try {
-    const { title, category, author } = req.body;
-    const newBoard = await prisma.board.create({
-      data: { title, category, author }
+//POST ENDPOINTS
+  app.post('/api/boards', async (req, res) => {
+      try {
+          const { title, category, author } = req.body;
+          const newBoard = await prisma.board.create({
+              data: { title, category, author }
+            });
+            res.status(201).json(newBoard);
+        } catch (error) {
+            res.status(500).json({ error: 'Error creating board' });
+        }
     });
-    res.status(201).json(newBoard);
-} catch (error) {
-    res.status(500).json({ error: 'Error creating board' });
-}
-});
 
-//PUT ENDPOINTS
+    app.post('/api/boards/:boardId/cards', async (req, res) => {
+      const { boardId } = req.params;
+      const { message, gifUrl } = req.body;
+
+      try {
+          const newCard = await prisma.card.create({
+              data: {
+                  message,
+                  gifUrl,
+                  boardId: parseInt(boardId)
+              }
+          });
+          res.status(201).json(newCard);
+      } catch (error) {
+          console.error(`Error creating card for board ${boardId}:`, error);
+          res.status(500).json({ error: `Error creating card for board ${boardId}` });
+      }
+  });
+
+    //PUT ENDPOINTS
 
 app.put('/boards/:id', async (req, res) => {
     const {id} = req.params;

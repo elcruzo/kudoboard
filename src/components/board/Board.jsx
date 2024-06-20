@@ -1,7 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './board.css';
 
 function Board({ id, title, category }) {
+  const navigate = useNavigate();
+
+  const handleViewBoard = () => {
+    navigate(`/board/${id}`);
+  };
+
   return (
     <div className='card-container'>
       <div className='img-container'>
@@ -11,7 +18,7 @@ function Board({ id, title, category }) {
         <h2>{title}</h2>
         <p>{category}</p>
         <div className='card-button-cont'>
-          <button>View Board</button>
+          <button onClick={handleViewBoard}>View Board</button>
           <button>Delete Board</button>
         </div>
       </div>

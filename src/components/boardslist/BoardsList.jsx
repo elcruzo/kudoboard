@@ -9,7 +9,7 @@ function BoardsList() {
     async function fetchBoards() {
       try {
         const backendUrlAccess = import.meta.env.VITE_BACKEND_ADDRESS;
-        const response = await fetch(`${backendUrlAccess}/api/boards`);
+        const response = await fetch(`${backendUrlAccess}/boards`);
         if (!response.ok) {
           throw new Error('Boards not found');
         }
@@ -28,6 +28,7 @@ function BoardsList() {
           {boards.map(board => (
             <Board
               key={board.id}
+              id={board.id}
               title={board.title}
               category={board.category}
             />

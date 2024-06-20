@@ -62,7 +62,6 @@ function App() {
           throw new Error('Something went wrong!');
         }
         const data = await response.json();
-        console.log(data);
         setBoards(data);
       }
       catch(error) {
@@ -82,7 +81,7 @@ function App() {
       updatedBoards = boards.filter(board => board.category === selectedCategory);
     }
 
-    if (searchQuery.trim() === '') {
+    if (searchQuery.trim() !== '') {
       updatedBoards = updatedBoards.filter((board) => board.title.toLowerCase().includes(searchQuery.toLowerCase()));
     }
 

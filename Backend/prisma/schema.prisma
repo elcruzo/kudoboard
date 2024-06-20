@@ -13,6 +13,27 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id              Int       @id @default(autoincrement())
+  email           String    @unique
+  password        String
+  isVerified      Boolean   @default(false)
+  createdAt       DateTime  @default(now())
+  verificationToken VerificationToken?
+
+  @@map("users")
+}
+
+model VerificationToken {
+  id        Int      @id @default(autoincrement())
+  token     String   @unique
+  userId    Int      @unique
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@map("verification_tokens")
+}
+
 model Board {
   id        Int      @id @default(autoincrement())
   title     String

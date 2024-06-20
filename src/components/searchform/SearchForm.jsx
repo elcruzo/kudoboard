@@ -1,14 +1,19 @@
 import { useState } from 'react';
+import { debounce } from 'lodash';
 import './searchform.css'
 import Suggestions from '../suggestions/Suggestions';
 
 function SearchForm({ handleSearch, suggestions }) {
   const [searchQuery, setSearchQuery] = useState('');
 
+  const debounceHandleSearch = debounce((query) => {
+    handleSearch(query);
+  }, 300);
+
   const handleInputChange = (event) => {
     const query = event.target.value;
     setSearchQuery(query);
-    handleSearch(query);
+    debounceHandleSearch(query);
   };
 
   const handleSuggestionClick = (suggestion) => {

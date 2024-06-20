@@ -40,7 +40,6 @@ function App() {
       setBoards(prevBoards => [...prevBoards, newBoard]);
       handleCloseModal();
 
-      await getBoards();
     } catch (error) {
       console.error('Error creating board:', error);
     }
@@ -48,53 +47,48 @@ function App() {
 
   const handleFilter = (category) => {
     setSelectedCategory(category);
-
-    if (category === 'All') {
-      setFilteredBoards(boards);
-    } else if (category === 'Recent') {
-      const sortedBoards = [...boards].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-      setFilteredBoards(sortedBoards)
-    } else {
-      const filtered = setFilteredBoards(boards.filter(board => board.category === category));
-      setFilteredBoards(filtered);
-    }
   };
 
   const handleSearch = (query) => {
     setSearchQuery(query);
-    if (query.trim() === '') {
-      setFilteredBoards(boards);
-      setSuggestions([]);
-    } else {
-      const filtered = boards.filter(board => board.title.toLowerCase().includes(query.toLowerCase()));
-      setFilteredBoards(filtered);
-      setSuggestions(filtered.map(board => board.title));
-    }
-  };
+  }
 
   useEffect(() => {
+    const getBoards = async () => {
+      try{
+        const backendUrlAccess = import.meta.env.VITE_BACKEND_ADDRESS;
+        const response = await fetch(`${backendUrlAccess}/boards`);
+        if (!response.ok) {
+          throw new Error('Something went wrong!');
+        }
+        const data = await response.json();
+        console.log(data);
+        setBoards(data);
+      }
+      catch(error) {
+        console.error(error);
+      }
+    };
+
     getBoards();
   }, []);
 
   useEffect(() => {
-    handleFilter(selectedCategory);
-  }, [boards, selectedCategory]);
+    let updatedBoards = boards;
 
-  async function getBoards() {
-    try{
-      const backendUrlAccess = import.meta.env.VITE_BACKEND_ADDRESS;
-      const response = await fetch(`${backendUrlAccess}/boards`);
-      if (!response.ok) {
-        throw new Error('Something went wrong!');
-      }
-      const data = await response.json();
-      console.log(data);
-      setBoards(data);
+    if (selectedCategory === 'Recent') {
+      updatedBoards = [...boards].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    } else if (selectedCategory != 'All') {
+      updatedBoards = boards.filter(board => board.category === selectedCategory);
     }
-    catch(error) {
-      console.error(error);
+
+    if (searchQuery.trim() === '') {
+      updatedBoards = updatedBoards.filter((board) => board.title.toLowerCase().includes(searchQuery.toLowerCase()));
     }
-  }
+
+    setFilteredBoards(updatedBoards);
+    setSuggestions(updatedBoards.map((board) => board.title));
+  }, [boards, selectedCategory, searchQuery]);
 
   return (
     <Router>

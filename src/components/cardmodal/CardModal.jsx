@@ -11,7 +11,6 @@ function CardModal({ show, handleClose, handleSubmit, children }) {
                     &times;
                 </button>
                 {children}
-                <button onClick={handleSubmit}>Submit</button>
             </div>
         </div>
     );

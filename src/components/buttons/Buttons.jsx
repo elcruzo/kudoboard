@@ -13,4 +13,4 @@ function Buttons({ handleFilter }) {
   )
 }
 
-export default Buttons
+export default Buttons;

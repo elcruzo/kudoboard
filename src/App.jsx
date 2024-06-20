@@ -24,7 +24,7 @@ function App() {
   const handleCreateBoard = async (data) => {
     try {
       const backendUrlAccess = import.meta.env.VITE_BACKEND_ADDRESS;
-      const response = await fetch(`${backendUrlAccess}/api/boards`, {
+      const response = await fetch(`${backendUrlAccess}/boards`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -37,10 +37,10 @@ function App() {
       }
 
       const newBoard = await response.json();
-      setBoards([...boards, newBoard]);
+      setBoards(prevBoards => [...prevBoards, newBoard]);
       handleCloseModal();
 
-      getBoards();
+      await getBoards();
     } catch (error) {
       console.error('Error creating board:', error);
     }
@@ -52,9 +52,11 @@ function App() {
     if (category === 'All') {
       setFilteredBoards(boards);
     } else if (category === 'Recent') {
-      setFilteredBoards([...boards].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
+      const sortedBoards = [...boards].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      setFilteredBoards(sortedBoards)
     } else {
-      setFilteredBoards(boards.filter(board => board.category === category));
+      const filtered = setFilteredBoards(boards.filter(board => board.category === category));
+      setFilteredBoards(filtered);
     }
   };
 

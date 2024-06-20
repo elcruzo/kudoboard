@@ -26,8 +26,8 @@ function BoardPage() {
                 console.log('Board data:', boardData);
                 setBoard(boardData);
 
-                console.log(`Fetching cards from ${backendUrlAccess}/api/boards/${boardId}/cards`);
-                const cardsResponse = await fetch(`${backendUrlAccess}/api/boards/${boardId}/cards`);
+                console.log(`Fetching cards from ${backendUrlAccess}/boards/${boardId}/cards`);
+                const cardsResponse = await fetch(`${backendUrlAccess}/boards/${boardId}/cards`);
                 if (!cardsResponse.ok) {
                     throw new Error('Cards not found');
                 }
@@ -46,7 +46,7 @@ function BoardPage() {
         e.preventDefault();
         try {
             const backendUrlAccess = import.meta.env.VITE_BACKEND_ADDRESS;
-            const response = await fetch(`${backendUrlAccess}/api/boards/${boardId}/cards`, {
+            const response = await fetch(`${backendUrlAccess}/boards/${boardId}/cards`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

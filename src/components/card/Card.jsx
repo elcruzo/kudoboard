@@ -5,7 +5,7 @@ function Card({ card, onCardUpdate, onCardDelete }) {
     const handleSignCard = async () => {
         try {
             const backendUrlAccess = import.meta.env.VITE_BACKEND_ADDRESS;
-            const response = await fetch(`${backendUrlAccess}/api/cards/${card.id}/sign`, {
+            const response = await fetch(`${backendUrlAccess}/cards/${card.id}/sign`, {
                 method: 'PUT'
             });
 
@@ -23,7 +23,7 @@ function Card({ card, onCardUpdate, onCardDelete }) {
     const handleUpvote = async () => {
         try {
             const backendUrlAccess = import.meta.env.VITE_BACKEND_ADDRESS;
-            const response = await fetch(`${backendUrlAccess}/api/cards/${card.id}/upvote`, {
+            const response = await fetch(`${backendUrlAccess}/cards/${card.id}/upvote`, {
                 method: 'PUT'
             });
 
@@ -41,7 +41,7 @@ function Card({ card, onCardUpdate, onCardDelete }) {
     const handleDelete = async () => {
         try {
             const backendUrlAccess = import.meta.env.VITE_BACKEND_ADDRESS;
-            const response = await fetch(`${backendUrlAccess}/api/cards/${card.id}`, {
+            const response = await fetch(`${backendUrlAccess}/cards/${card.id}`, {
                 method: 'DELETE'
             });
 

@@ -34,7 +34,10 @@ function BoardPage() {
                 }
                 const cardsData = await cardsResponse.json();
                 console.log('Cards data:', cardsData);
-                setCards(cardsData);
+                setCards(cardsData.map(card => ({
+                    ...card,
+                    comments: card.comments || []
+                })));
             } catch (error) {
                 console.error('Error fetching board details:', error);
             }
@@ -60,7 +63,10 @@ function BoardPage() {
             }
 
             const newCard = await response.json();
-            setCards([...cards, newCard]);
+            setCards([...cards, {
+                ...newCard,
+                comments: []
+            }]);
             setNewCardMessage('');
             setNewCardGifUrl('');
             setTextMessage('');
@@ -68,6 +74,19 @@ function BoardPage() {
         } catch (error) {
             console.error('Error adding card:', error);
         }
+    };
+
+    const handleCardUpdate = (updatedCard) => {
+        const updatedCards = cards.map(card => {
+            if (card.id === updatedCard.id) {
+                return {
+                    ...updatedCard,
+                    comments: card.comments || []
+                };
+            }
+            return card;
+        });
+        setCards(updatedCards);
     };
 
     if (!board) {
@@ -107,7 +126,7 @@ function BoardPage() {
                 </form>
             </CardModal>
 
-            <CardsList cards={cards} setCards={setCards} />
+            <CardsList cards={cards} onCardUpdate={handleCardUpdate} setCards={setCards} />
         </div>
     );
 }

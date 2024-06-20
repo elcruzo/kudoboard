@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './card.css';
 
 function Card({ card, onCardUpdate, onCardDelete }) {
+    const [newComment, setNewComment] = useState('');
+
     const handleSignCard = async () => {
         try {
             const backendUrlAccess = import.meta.env.VITE_BACKEND_ADDRESS;
@@ -15,6 +17,7 @@ function Card({ card, onCardUpdate, onCardDelete }) {
 
             const updatedCard = await response.json();
             onCardUpdate(updatedCard);
+            setNewComment('');
         } catch (error) {
             console.error('Error signing card:', error);
         }
@@ -55,13 +58,56 @@ function Card({ card, onCardUpdate, onCardDelete }) {
         }
     };
 
+    const handleAddComment = async (e) => {
+        e.preventDefault();
+        try {
+            const backendUrlAccess = import.meta.env.VITE_BACKEND_ADDRESS;
+            const response = await fetch(`${backendUrlAccess}/cards/${card.id}/comments`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ content: newComment })
+            });
+
+            if (!response.ok) {
+                throw new Error('Error adding comment');
+            }
+
+            const updatedCard = await response.json();
+            onCardUpdate(updatedCard);
+            setNewComment('');
+        } catch (error) {
+            console.error('Error adding comment:', error);
+        }
+    };
+
     return (
         <div className='card-container'>
             <img src={card.gifUrl} alt='GIF' />
             <p>{card.message}</p>
             {card.textMessage && <p>{card.textMessage}</p>}
+            <p>Upvotes: {card.upvotes}</p>
+            <div className='comments-section'>
+                <h4>Comments:</h4>
+                <ul>
+                    {card.comments && card.comments.map(comment => (
+                        <li key={comment.id}>{comment.content}</li>
+                    ))}
+                </ul>
+                <form onSubmit={handleAddComment}>
+                    <input
+                        type='text'
+                        value={newComment}
+                        onChange={(e) => setNewComment(e.target.value)}
+                        placeholder='Add a comment'
+                        required
+                    />
+                    <button type='submit'>Add Comment</button>
+                </form>
+            </div>
             <div className='card-actions'>
-                <button onClick={handleSignCard}>Sign</button>
+                <button onClick={handleSignCard}>{card.isSigned ? 'Unsign' : 'Sign'}</button>
                 <button onClick={handleUpvote}>Upvote</button>
                 <button onClick={handleDelete}>Delete</button>
             </div>

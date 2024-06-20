@@ -56,6 +56,9 @@ app.get('/boards/:boardId/cards', async (req, res) => {
             where: {
                 boardId: parseInt(boardId),
             },
+            include: {
+                comments: true,
+            },
         });
         res.status(200).json(cards);
     } catch (error) {
@@ -151,6 +154,32 @@ app.put('/cards/:cardId/upvote', async (req, res) => {
     }
 });
 
+//PATCH ENDPOINTS
+
+app.patch('/cards/:cardId/comments', async (req, res) => {
+    const { cardId } = req.params;
+    const { content } = req.body;
+    try {
+        const updatedCard = await prisma.card.update({
+            where: { id: parseInt(cardId) },
+            data: {
+                comments: {
+                    create: {
+                        content
+                    }
+                }
+            },
+            include: {
+                comments: true
+            }
+        });
+        res.json(updatedCard);
+    } catch (error) {
+        console.error(`Error adding comment to card ${cardId}:`, error);
+        res.status(500).json({ error: `Error adding comment to card ${cardId}` });
+    }
+});
+
 // DELETE ENDPOINTS
 
 app.delete('/boards/:boardId', async (req, res) => {
@@ -169,9 +198,20 @@ app.delete('/boards/:boardId', async (req, res) => {
 app.delete('/cards/:cardId', async (req, res) => {
     const { cardId } = req.params;
     try {
-        const deletedCard = await prisma.card.delete({
-            where: { id: parseInt(cardId) },
+        // First delete all comments associated with the card
+        await prisma.comment.deleteMany({
+            where: {
+                cardId: parseInt(cardId),
+            },
         });
+
+        // Then delete the card
+        const deletedCard = await prisma.card.delete({
+            where: {
+                id: parseInt(cardId),
+            },
+        });
+
         res.status(200).json(deletedCard);
     } catch (error) {
         console.error(`Error deleting card ${cardId}:`, error);

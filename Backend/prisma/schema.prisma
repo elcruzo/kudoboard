@@ -14,21 +14,29 @@ datasource db {
 }
 
 model Board {
-  id  Int @id @default(autoincrement())
-  title String
-  category String
-  author String?
+  id        Int      @id @default(autoincrement())
+  title     String
+  category  String
+  author    String?
   createdAt DateTime @default(now())
-  cards Card[]
+  cards     Card[]
 }
 
 model Card {
-  id          Int      @id @default(autoincrement())
-  message     String
-  gifUrl      String
+  id           Int       @id @default(autoincrement())
+  message      String
+  gifUrl       String
   textMessage  String?
-  isSigned    Boolean  @default(false)
-  upvotes     Int      @default(0)
-  boardId     Int
-  board       Board    @relation(fields: [boardId], references: [id])
+  upvotes      Int       @default(0)
+  isSigned     Boolean   @default(false)
+  board        Board     @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  boardId      Int
+  comments     Comment[]
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  content   String
+  card      Card     @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  cardId    Int
 }

@@ -1,0 +1,18 @@
+.card-container {
+    width: fit-content;
+}
+
+.img-container {
+    min-width: 200px;
+    height: 350px;
+    border: 1px solid black;
+}
+
+.img-container img {
+    width: 100%;
+}
+
+.card-button-cont {
+    display: flex;
+    justify-content: space-between;
+}

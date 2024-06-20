@@ -1,7 +1,7 @@
 import React from 'react';
 import './cardmodal.css';
 
-function Modal({ show, handleClose, handleSubmit, children }) {
+function CardModal({ show, handleClose, handleSubmit, children }) {
     if (!show) return null;
 
     return (
@@ -17,4 +17,4 @@ function Modal({ show, handleClose, handleSubmit, children }) {
     );
 }
 
-export default Modal;
+export default CardModal;

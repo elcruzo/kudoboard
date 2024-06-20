@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './boardpage.css';
 import CardsList from '../cardslist/CardsList';
-import Modal from '../cardmodal/CardModal';
+import CardModal from '../cardmodal/CardModal';
 
 function BoardPage() {
     const { boardId } = useParams();
@@ -79,7 +79,7 @@ function BoardPage() {
 
             <button onClick={() => setShowModal(true)}>Add Card</button>
 
-            <Modal show={showModal} handleClose={() => setShowModal(false)} handleSubmit={handleAddCard}>
+            <CardModal show={showModal} handleClose={() => setShowModal(false)} handleSubmit={handleAddCard}>
                 <form onSubmit={handleAddCard} className='add-card-form'>
                     <input
                         type='text'
@@ -97,7 +97,7 @@ function BoardPage() {
                     />
                     <button type='submit'>Add Card</button>
                 </form>
-            </Modal>
+            </CardModal>
 
             <CardsList cards={cards} setCards={setCards} />
         </div>

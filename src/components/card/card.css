@@ -1,9 +1,14 @@
 .card-cont-text {
     padding: 10px;
+    position: relative;
 }
 
 .card-actions {
     display: flex;
     justify-content: space-between;
-    margin-top: 7px;
+    padding-top: 7px;
+}
+
+.gif-container img{
+    height: 200px;
 }

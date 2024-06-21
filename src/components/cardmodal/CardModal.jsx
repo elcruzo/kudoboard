@@ -16,7 +16,7 @@ function CardModal({ show, handleClose, handleSubmit, children }) {
         return () => {
             window.removeEventListener('click', handleOutsideClick)
         }
-    }, [])
+    }, [handleClose])
 
     return (
         <div className='modal-overlay'>

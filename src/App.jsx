@@ -10,6 +10,7 @@ import Modal from './components/modal/Modal';
 import BoardPage from './components/boardpage/BoardPage';
 import NotFoundPage from './components/notfoundpage/NotFoundPage';
 import Login from './components/login/Login';
+import Footer from './components/footer/Footer';
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -121,6 +122,7 @@ function App() {
                             <Create onOpenModal={handleOpenModal} />
                         </div>
                         <BoardsList boards={filteredBoards} handleDeleteBoard={handleDeleteBoard} />
+                        <Footer />
                         <Modal show={showModal} handleClose={handleCloseModal} handleSubmit={handleCreateBoard} />
                     </div>
                 } />

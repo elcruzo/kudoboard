@@ -1,7 +1,7 @@
 .suggestions-list {
     list-style-type: none;
     padding: 0;
-    margin: 0;
+    margin: 50px;
     background-color: #151E3F;
     border: 1px solid #F2F3D9;
     border-radius: 5px;

@@ -89,7 +89,7 @@ function Card({ card, onCardUpdate, onCardDelete }) {
             <img src={card.gifUrl} alt='GIF' />
             <p>{card.message}</p>
             {card.textMessage && <p>{card.textMessage}</p>}
-            <p>Upvotes: {card.upvotes}</p>
+            <p><strong>By: {card.author}</strong></p>
             <div className='comments-section'>
                 <h4>Comments:</h4>
                 <ul>
@@ -109,8 +109,7 @@ function Card({ card, onCardUpdate, onCardDelete }) {
                 </form>
             </div>
             <div className='card-actions'>
-                <button onClick={handleToggleSign}>{card.isSigned ? 'Unsign' : 'Sign'}</button>
-                <button onClick={handleUpvote}>Upvote</button>
+                <button onClick={handleUpvote}>Upvote: {card.upvotes}</button>
                 <button onClick={handleDelete}>Delete</button>
             </div>
         </div>

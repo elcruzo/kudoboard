@@ -102,13 +102,14 @@ app.post('/boards', async (req, res) => {
 
 app.post('/boards/:boardId/cards', async (req, res) => {
     const { boardId } = req.params;
-    const { message, gifUrl, textMessage } = req.body;
+    const { message, gifUrl, textMessage, author } = req.body;
     try {
         const newCard = await prisma.card.create({
             data: {
                 message,
                 gifUrl,
                 textMessage,
+                author,
                 boardId: parseInt(boardId)
             }
         });

@@ -9,6 +9,7 @@ import BoardsList from './components/boardslist/BoardsList';
 import Modal from './components/modal/Modal';
 import BoardPage from './components/boardpage/BoardPage';
 import NotFoundPage from './components/notfoundpage/NotFoundPage';
+import Login from './components/login/Login';
 
 function App() {
   const [showModal, setShowModal] = useState(false);

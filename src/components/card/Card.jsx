@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import './card.css';
 
 function Card({ card, onCardUpdate, onCardDelete }) {
@@ -159,7 +161,7 @@ function Card({ card, onCardUpdate, onCardDelete }) {
                     </form>
                 </div>
                 <div className='card-actions'>
-                    <button onClick={handleUpvote}>Upvote: {card.upvotes}</button>
+                    <button onClick={handleUpvote}>Upvote<FontAwesomeIcon icon={faArrowUp} />: {card.upvotes}</button>
                     <button onClick={handleDelete}>Delete</button>
                 </div>
             </div>

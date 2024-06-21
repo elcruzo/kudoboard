@@ -1,3 +1,21 @@
-.buttons-container {
-  margin-top: 20px;
+footer {
+  text-align: center;
+  padding: 20px;
+  margin-top: 30px;
+  border-top: 1px solid #F2F3D9;
+}
+footer p {
+  color: #F2F3D9;
+}
+
+@media (max-width: 768px) {
+  .buttons-container-1, .buttons-container-2 {
+    flex-direction: column;
+}
+.searchform-container input {
+    width: 80%;
+}
+.suggestions-list {
+    width: 80%;
+}
 }

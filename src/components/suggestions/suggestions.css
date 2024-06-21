@@ -2,15 +2,18 @@
     list-style-type: none;
     padding: 0;
     margin: 0;
-    border: 1px solid #ccc;
-    border-top: none;
+    background-color: #151E3F;
+    border: 1px solid #F2F3D9;
+    border-radius: 5px;
+    position: absolute;
+    width: 50%;
+    z-index: 1000;
 }
-
 .suggestions-list li {
     padding: 10px;
     cursor: pointer;
 }
-
 .suggestions-list li:hover {
-    background-color: #f0f0f0;
+    background-color: #F2F3D9;
+    color: #151E3F;
 }

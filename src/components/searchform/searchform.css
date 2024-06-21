@@ -1,13 +1,19 @@
+input[type="text"], input[type="email"], input[type="password"], select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #F2F3D9;
+    background-color: transparent;
+    color: #F2F3D9;
+}
+/* Search Form */
 .searchform-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin: auto;
+    margin-bottom: 20px;
 }
-
 .searchform-container input {
-    width: 40%;
-    height: 30px;
-    border: 1px solid #151E3F;
-    border-radius: 5px;
+    width: 50%;
+    padding: 10px;
+    margin-right: 10px;
 }

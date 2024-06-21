@@ -1,19 +1,14 @@
 .logo-container {
-    width: 100px;
-    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: auto;
-    padding-top: 2vh;
+    margin-bottom: 20px;
 }
-
 .logo-container img {
-    width: 100%;
+    width: 100px;
 }
-
 .title h1 {
     text-align: center;
-    margin: 0 0 20px 0;
+    margin-bottom: 20px;
     letter-spacing: 0.2rem;
 }

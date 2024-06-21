@@ -1,13 +1,10 @@
-.buttons-container-1 {
+.buttons-container, .buttons-container-1, .buttons-container-2 {
     display: flex;
-    width: 100%;
     justify-content: center;
-    align-items: center;
-    margin: auto;
     gap: 15px;
+    margin-bottom: 20px;
 }
-
-.buttons-container-1 button {
+button {
     padding: 10px 20px;
     border-radius: 10px;
     background: none;
@@ -15,4 +12,9 @@
     font-weight: 900;
     border: 1px solid #F2F3D9;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+button:hover {
+    background-color: #F2F3D9;
+    color: #151E3F;
 }

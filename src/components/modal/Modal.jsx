@@ -28,7 +28,7 @@ function Modal({ show, handleClose, handleSubmit }) {
       return () => {
           window.removeEventListener('click', handleOutsideClick)
       }
-  }, [])
+  }, [handleClose])
 
   return (
     <div className="modal-overlay">
@@ -43,7 +43,6 @@ function Modal({ show, handleClose, handleSubmit }) {
             <label htmlFor="category">Category:</label>
             <select id="category" name="category" required>
                 <option value="All"></option>
-                <option value="Recent">Recent</option>
                 <option value="Celebration">Celebration</option>
                 <option value="Thank You">Thank You</option>
                 <option value="Inspiration">Inspiration</option>

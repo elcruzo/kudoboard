@@ -1,13 +1,49 @@
-.board-page-container{
-    text-align: center;
+.board-page-container {
+    padding: 20px;
 }
 
-.add-card-button{
-    padding: 10px 20px;
-    border-radius: 10px;
-    background: none;
-    color: #F2F3D9;
-    font-weight: 900;
-    border: 1px solid #F2F3D9;
+.board-page-container h2 {
+    margin: 0 0 10px 0;
+}
+
+.board-page-container p {
+    margin: 0 0 20px 0;
+    color: #666;
+}
+
+.add-card-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+.add-card-button:hover {
+    background-color: #0056b3;
+}
+
+.add-card-form input {
+    display: block;
+    width: calc(100% - 20px);
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.add-card-form button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #28a745;
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+.add-card-form button:hover {
+    background-color: #218838;
 }

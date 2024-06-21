@@ -1,9 +1,14 @@
 .suggestions-list {
     list-style-type: none;
     padding: 0;
-    margin: 0;
-    border: 1px solid #ccc;
-    border-top: none;
+    margin: 40px 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    max-width: 400px;
+    width: 80%;
+    position: absolute;
+    z-index: 1;
 }
 
 .suggestions-list li {

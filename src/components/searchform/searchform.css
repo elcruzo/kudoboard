@@ -1,13 +1,14 @@
 .searchform-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    margin: auto;
+    margin: 20px 0;
 }
 
 .searchform-container input {
-    width: 40%;
-    height: 30px;
-    border: 1px solid #151E3F;
-    border-radius: 5px;
+    width: 80%;
+    max-width: 400px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }

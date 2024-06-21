@@ -1,6 +1,61 @@
-/* body {
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
   font-family: 'Poppins', sans-serif;
   background-color: #151E3F;
   color: #F2F3D9;
-} */
+  line-height: 1.6;
+  padding: 20px;
+}
+a {
+  color: #F2F3D9;
+  text-decoration: none;
+}
+
+.text-center {
+  text-align: center;
+}
+.mt-20 {
+  margin-top: 20px;
+}
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #151E3F;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #F2F3D9;
+  border-radius: 10px;
+}
+/* Transition Effects */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+/* Hover Effects */
+.hover-grow {
+  transition: transform 0.3s ease;
+}
+.hover-grow:hover {
+  transform: scale(1.1);
+}
+/* Active State Styles */
+.active {
+  background-color: #F2F3D9;
+  color: #151E3F;
+}

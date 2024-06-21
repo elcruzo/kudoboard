@@ -1,18 +1,20 @@
-.buttons-container-1 {
+.buttons-container, .buttons-container-1, .buttons-container-2 {
     display: flex;
-    gap: 10px;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
 }
-
-.buttons-container-1 button {
+button {
     padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
+    border-radius: 10px;
+    background: none;
+    color: #F2F3D9;
+    font-weight: 900;
+    border: 1px solid #F2F3D9;
     cursor: pointer;
-    background-color: #007bff;
-    color: #fff;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
 }
-
-.buttons-container-1 button:hover {
-    background-color: #0056b3;
+button:hover {
+    background-color: #F2F3D9;
+    color: #151E3F;
 }

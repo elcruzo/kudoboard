@@ -126,41 +126,42 @@ function Card({ card, onCardUpdate, onCardDelete }) {
             <div className='gif-container'>
                 {gifUrl && <img src={gifUrl} alt={gifTitle} />}
             </div>
-            <p>{card.message}</p>
-            {card.textMessage && <p>{card.textMessage}</p>}
-            <p><strong>By: {card.author}</strong></p>
-            <div className='gif-search-section'>
-                <form onSubmit={handleSearchGif}>
-                    <input
-                        type='text'
-                        value={searchGifQuery}
-                        onChange={(e) => setSearchGifQuery(e.target.value)}
-                        placeholder='Search for a GIF'
-                    />
-                    <button type='submit'>Search GIF</button>
-                </form>
-            </div>
-            <div className='comments-section'>
-                <h4>Comments:</h4>
-                <ul>
-                    {card.comments && card.comments.map(comment => (
-                        <li key={comment.id}>{comment.content}</li>
-                    ))}
-                </ul>
-                <form onSubmit={handleAddComment}>
-                    <input
-                        type='text'
-                        value={newComment}
-                        onChange={(e) => setNewComment(e.target.value)}
-                        placeholder='Add a comment'
-                        required
-                    />
-                    <button type='submit'>Add Comment</button>
-                </form>
-            </div>
-            <div className='card-actions'>
-                <button onClick={handleUpvote}>Upvote: {card.upvotes}</button>
-                <button onClick={handleDelete}>Delete</button>
+            <div className='card-cont-text'>
+                <p>{card.message}</p>
+                {card.textMessage && <p>{card.textMessage}</p>}
+                <p><strong>By: {card.author}</strong></p>
+                <div className='gif-search-section'>
+                    <form onSubmit={handleSearchGif}>
+                        <input
+                            type='text'
+                            value={searchGifQuery}
+                            onChange={(e) => setSearchGifQuery(e.target.value)}
+                            placeholder='Search for a GIF'
+                        />
+                        <button type='submit'>Search GIF</button>
+                    </form>
+                </div>
+                <div className='comments-section'>
+                    <h4>Comments:</h4>
+                    <ul>
+                        {card.comments && card.comments.map(comment => (
+                            <li key={comment.id}>{comment.content}</li>
+                        ))}
+                    </ul>
+                    <form onSubmit={handleAddComment}>
+                        <input
+                            type='text'
+                            value={newComment}
+                            onChange={(e) => setNewComment(e.target.value)}
+                            placeholder='Add a comment'
+                            required
+                        />
+                    </form>
+                </div>
+                <div className='card-actions'>
+                    <button onClick={handleUpvote}>Upvote: {card.upvotes}</button>
+                    <button onClick={handleDelete}>Delete</button>
+                </div>
             </div>
         </div>
     );

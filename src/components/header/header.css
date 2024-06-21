@@ -1,12 +1,14 @@
-.logo-container img {
-    width: 50px;
-    height: 50px;
-    margin-left: auto;
-    margin-right: auto;
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
 }
-
+.logo-container img {
+    width: 100px;
+}
 .title h1 {
     text-align: center;
-    font-size: 2rem;
-    color: #333;
+    margin-bottom: 20px;
+    letter-spacing: 0.2rem;
 }

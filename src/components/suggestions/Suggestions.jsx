@@ -1,5 +1,5 @@
 import React from 'react';
-import './suggestions.css'; // You can style suggestions here
+import './suggestions.css';
 
 function Suggestions({ suggestions, handleSuggestionClick }) {
   return (

@@ -6,7 +6,7 @@ input[type="text"], input[type="email"], input[type="password"], select, textare
     background-color: transparent;
     color: #F2F3D9;
 }
-/* Search Form */
+
 .searchform-container {
     display: flex;
     justify-content: center;

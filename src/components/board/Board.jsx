@@ -11,12 +11,12 @@ function Board({ id, title, category, handleDeleteBoard }) {
   };
 
   const handleImageLoad = () => {
-    setIsLoading(false); // Update loading state when image has loaded
+    setIsLoading(false);
   };
 
   const handleImageError = (e) => {
     console.error('Error loading image:', e);
-    setIsLoading(false); // Ensure loading indicator is removed on error
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -44,7 +44,7 @@ function Board({ id, title, category, handleDeleteBoard }) {
           src={`https://picsum.photos/id/${id}/200/300`}
           alt={title}
           onLoad={handleImageLoad}
-          onError={handleImageError} // Handle image loading errors
+          onError={handleImageError}
           style={{ display: isLoading ? 'none' : 'block' }} // Show image when loaded
         />
       </div>

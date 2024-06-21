@@ -14,7 +14,7 @@ function Board({ id, title, category, handleDeleteBoard }) {
       <div className='img-container'>
         <img src={`https://picsum.photos/200/`} alt={title} />
       </div>
-      <div>
+      <div className='board-det'>
         <h2>{title}</h2>
         <p>{category}</p>
         <div className='card-button-cont'>

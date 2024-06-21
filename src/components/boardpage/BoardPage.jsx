@@ -100,7 +100,7 @@ function BoardPage() {
             <h2>{board.title}</h2>
             <p>Category: {board.category}</p>
 
-            <button onClick={() => setShowModal(true)}>Add Card</button>
+            <button onClick={() => setShowModal(true)} className='add-card-button'>Add Card</button>
 
             <CardModal show={showModal} handleClose={() => setShowModal(false)} handleSubmit={handleAddCard}>
                 <form onSubmit={handleAddCard} className='add-card-form'>
@@ -131,7 +131,7 @@ function BoardPage() {
                         onChange={(e) => setAuthor(e.target.value)}
                         required
                     />
-                    <button type='submit'>Add Card</button>
+                    <button type='submit' className='add-card-button'>Add Card</button>
                 </form>
             </CardModal>
 

@@ -1,6 +1,6 @@
 
 import './header.css'
-import logoImg from '/src/assets/star-medal.jpg'
+import logoImg from '/src/assets/star-medal-removebg.png'
 
 function Header() {
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './modal.css';
 
 function Modal({ show, handleClose, handleSubmit }) {
@@ -15,6 +15,20 @@ function Modal({ show, handleClose, handleSubmit }) {
     console.log('Form Data:', data)
     handleSubmit(data);
   };
+
+  const handleOutsideClick = (event) => {
+    if (event.target.classList.contains('modal-overlay')) {
+        handleClose();
+    }
+  }
+
+  useEffect(() => {
+      window.addEventListener('click', handleOutsideClick);
+
+      return () => {
+          window.removeEventListener('click', handleOutsideClick)
+      }
+  }, [])
 
   return (
     <div className="modal-overlay">

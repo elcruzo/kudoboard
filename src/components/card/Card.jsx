@@ -1,8 +1,11 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import './card.css';
 
 function Card({ card, onCardUpdate, onCardDelete }) {
     const [newComment, setNewComment] = useState('');
+    const [gifUrl, setGifUrl] = useState('');
+    const [gifTitle, setGifTitle] = useState('');
+    const [searchGifQuery, setSearchGifQuery] = useState('');
 
     const handleToggleSign = async () => {
         try {
@@ -84,12 +87,59 @@ function Card({ card, onCardUpdate, onCardDelete }) {
         }
     };
 
+    const fetchGif = async (query) => {
+        const apiKey = import.meta.env.VITE_API_KEY; // Ensure this is set in your environment variables
+        const apiURL = query
+        ? `https://api.giphy.com/v1/gifs/search?q=${encodeURIComponent(query)}&api_key=${apiKey}&limit=1&rating=g`
+        : `https://api.giphy.com/v1/gifs/random?api_key=${apiKey}&rating=g`;
+
+        try {
+            const response = await fetch(apiURL);
+            if (!response.ok) {
+                throw new Error('Failed to fetch GIF');
+            }
+            const data = await response.json();
+
+            if (data.data) {
+                const gif = query ? data.data[0] : data.data;
+                setGifUrl(gif.images.original.url);
+                setGifTitle(gif.title || 'GIF');
+            } else {
+                console.error('No GIFs found in the response');
+            }
+        } catch (error) {
+            console.error('Error fetching the GIF:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchGif(card.text); // Fetch initial GIF based on card text
+    }, [card.text]);
+
+    const handleSearchGif = (e) => {
+        e.preventDefault();
+        fetchGif(searchGifQuery);
+    };
+
     return (
         <div className='card-container'>
-            <img src={card.gifUrl} alt='GIF' />
+            <div className='gif-container'>
+                {gifUrl && <img src={gifUrl} alt={gifTitle} />}
+            </div>
             <p>{card.message}</p>
             {card.textMessage && <p>{card.textMessage}</p>}
             <p><strong>By: {card.author}</strong></p>
+            <div className='gif-search-section'>
+                <form onSubmit={handleSearchGif}>
+                    <input
+                        type='text'
+                        value={searchGifQuery}
+                        onChange={(e) => setSearchGifQuery(e.target.value)}
+                        placeholder='Search for a GIF'
+                    />
+                    <button type='submit'>Search GIF</button>
+                </form>
+            </div>
             <div className='comments-section'>
                 <h4>Comments:</h4>
                 <ul>

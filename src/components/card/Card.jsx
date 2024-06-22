@@ -90,7 +90,7 @@ function Card({ card, onCardUpdate, onCardDelete }) {
     };
 
     const fetchGif = async (query) => {
-        const apiKey = import.meta.env.VITE_API_KEY; // Ensure this is set in your environment variables
+        const apiKey = import.meta.env.VITE_API_KEY;
         const apiURL = query
         ? `https://api.giphy.com/v1/gifs/search?q=${encodeURIComponent(query)}&api_key=${apiKey}&limit=1&rating=g`
         : `https://api.giphy.com/v1/gifs/random?api_key=${apiKey}&rating=g`;

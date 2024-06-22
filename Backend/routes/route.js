@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 const { PrismaClient } = require('@prisma/client');
 const sendVerificationEmail = require('../utils/mailer');
 const authenticateToken = require('../middleware/auth');
-// const User = require('./models/User')
 
 const router = express.Router();
 const prisma = new PrismaClient();

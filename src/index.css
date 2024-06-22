@@ -35,7 +35,7 @@ a {
   background-color: #F2F3D9;
   border-radius: 10px;
 }
-/* Transition Effects */
+
 .fade-in {
   animation: fadeIn 0.5s ease-in-out;
 }
@@ -47,14 +47,14 @@ a {
       opacity: 1;
   }
 }
-/* Hover Effects */
+
 .hover-grow {
   transition: transform 0.3s ease;
 }
 .hover-grow:hover {
   transform: scale(1.1);
 }
-/* Active State Styles */
+
 .active {
   background-color: #F2F3D9;
   color: #151E3F;

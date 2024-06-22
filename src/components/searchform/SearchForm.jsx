@@ -17,7 +17,7 @@ function SearchForm({ handleSearch, suggestions }) {
   };
 
   const handleSuggestionClick = (suggestion) => {
-    setSearchQuery(suggestion); // Update input field with selected suggestion
+    setSearchQuery(suggestion);
     handleSearch(suggestion); // Trigger search with selected suggestion
   };
 

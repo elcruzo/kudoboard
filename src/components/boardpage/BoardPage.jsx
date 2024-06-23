@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import './boardpage.css';
 import CardsList from '../cardslist/CardsList';
 import CardModal from '../cardmodal/CardModal';
+import Footer from '../footer/Footer';
 
 function BoardPage() {
     const { boardId } = useParams();
@@ -136,6 +137,7 @@ function BoardPage() {
             </CardModal>
 
             <CardsList cards={cards} onCardUpdate={handleCardUpdate} setCards={setCards} />
+            {cards.length > 0 ? <Footer /> : null}
         </div>
     );
 }

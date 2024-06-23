@@ -2,7 +2,7 @@
 
 Submitted by: **Ayomide Caleb Adekoya**
 
-Deployed Application (optional): [Kudos Board Deployed Site](ADD_LINK_HERE)
+Deployed Application (optional): [Kudos Board Deployed Site](https://kudos-board-app.onrender.com)
 
 ### Application Features
 
